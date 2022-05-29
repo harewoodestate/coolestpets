@@ -21,7 +21,7 @@ const ListItem = styled.li`
   flex: 1;
   gap: 0.5em;
 `;
-
+//TODO: Put text in p tag
 const ListImage = styled.img`
   width: 100%;
   border-radius: 1em;
@@ -41,7 +41,7 @@ ListImage.defaultProps = {
   src: "/image1.png",
 };
 
-const Grid = () => {
+const GridLayout = () => {
   return (
     <Layout>
       <Heading>Results</Heading>
@@ -66,4 +66,4 @@ const Grid = () => {
   );
 };
 
-export default Grid;
+export default GridLayout;
