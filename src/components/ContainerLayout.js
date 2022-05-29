@@ -1,22 +1,49 @@
 import styled from "styled-components";
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+`;
 
-const SectionOne = styled.div``;
+const Header = styled.header`
+  height: 4em;
+  background-color: #f8cf47;
+`;
 
-const SectionTwo = styled.div``;
+const SectionOne = styled.section`
+  width: 75vw;
+  align-self: center;
+`;
 
-const SectionThree = styled.div``;
+const SectionTwo = styled.section`
+  width: 75vw;
+  align-self: center;
+`;
+
+const SectionThree = styled.section`
+  width: 75vw;
+  align-self: center;
+`;
+
+const Footer = styled.footer`
+  height: 3em;
+  background-color: #2b6db1;
+`;
 
 const ContainerLayout = ({ children }) => {
   const [one, two, three] = children;
 
   return (
-    <Container>
-      <SectionOne>{one}</SectionOne>
-      <SectionTwo>{two}</SectionTwo>
-      <SectionThree>{three}</SectionThree>
-    </Container>
+    <>
+      <Container>
+        <Header />
+        <SectionOne>{one}</SectionOne>
+        <SectionTwo>{two}</SectionTwo>
+        <SectionThree>{three}</SectionThree>
+        <Footer />
+      </Container>
+    </>
   );
 };
 
