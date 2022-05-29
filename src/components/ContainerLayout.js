@@ -3,7 +3,8 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  row-gap: 2.5em;
+  height: auto;
 `;
 
 const Header = styled.header`
