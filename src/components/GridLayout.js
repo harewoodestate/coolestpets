@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Layout = styled.div``;
@@ -49,7 +50,9 @@ const GridLayout = () => {
         <ListItem>
           <ListImage />
           One
-          <ListButton>View</ListButton>
+          <Link to="/details">
+            <ListButton>View</ListButton>
+          </Link>
         </ListItem>
         <ListItem>
           <ListImage />

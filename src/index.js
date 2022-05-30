@@ -7,6 +7,8 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import PetDetails from "./pages/PetDetails";
 
 let persistor = persistStore(store);
 
@@ -15,7 +17,12 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={<div>Loading...</div>} persistor={persistor}>
-        <App />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="/details" element={<PetDetails />} />
+          </Routes>
+        </BrowserRouter>
       </PersistGate>
     </Provider>
   </React.StrictMode>

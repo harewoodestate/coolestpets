@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import React from "react";
 
 const Container = styled.div`
   display: flex;
@@ -33,11 +34,12 @@ const Footer = styled.footer`
 `;
 
 const ContainerLayout = ({ children }) => {
-  const [one, two, three] = children;
+  let childrenArray = React.Children.toArray(children);
+  const [one, two, three] = childrenArray;
 
   return (
     <Container>
-      <Header />
+      <Header></Header>
       <SectionOne>{one}</SectionOne>
       <SectionTwo>{two}</SectionTwo>
       <SectionThree>{three}</SectionThree>
