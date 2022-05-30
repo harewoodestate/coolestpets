@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useGetPetsQuery } from "../services/pets";
 
 const Layout = styled.div``;
 
@@ -19,13 +20,16 @@ const ListItem = styled.li`
   flex-direction: column;
   list-style-type: none;
   width: 30%;
+  height: 20em;
   flex: 1;
   gap: 0.5em;
 `;
 //TODO: Put text in p tag
 const ListImage = styled.img`
   width: 100%;
+  height: 70%;
   border-radius: 1em;
+  object-fit: cover;
 `;
 
 const ListButton = styled.button`
@@ -38,32 +42,26 @@ const ListButton = styled.button`
   border: none;
 `;
 
-ListImage.defaultProps = {
-  src: "/image1.png",
-};
-
 const GridLayout = () => {
+  const { data, error, isLoading, isSuccess, isError } = useGetPetsQuery();
+
   return (
     <Layout>
       <Heading>Results</Heading>
+      {isLoading && "Loading..."}
+      {isError && error.message}
       <GridList>
-        <ListItem>
-          <ListImage />
-          One
-          <Link to="/details">
-            <ListButton>View</ListButton>
-          </Link>
-        </ListItem>
-        <ListItem>
-          <ListImage />
-          Two
-          <ListButton>View</ListButton>
-        </ListItem>
-        <ListItem>
-          <ListImage />
-          Three
-          <ListButton>View</ListButton>
-        </ListItem>
+        {isSuccess &&
+          data &&
+          data.pets.slice(0, 3).map((pet) => (
+            <ListItem key={pet.id}>
+              <ListImage src={pet.photo} alt="" />
+              {pet.name}
+              <Link to="/details">
+                <ListButton>View</ListButton>
+              </Link>
+            </ListItem>
+          ))}
       </GridList>
     </Layout>
   );

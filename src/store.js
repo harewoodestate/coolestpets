@@ -1,32 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import storage from "redux-persist/lib/storage";
-import {
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from "redux-persist";
-import rootReducer from "./features/pet";
+import { setupListeners } from "@reduxjs/toolkit/query";
+import { petsApi } from "./services/pets";
+import { getDefaultMiddleware } from "@reduxjs/toolkit";
 
-const persistConfig = {
-  key: "root",
-  version: 1,
-  storage,
-};
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-const store = configureStore({
-  reducer: persistedReducer,
+export const store = configureStore({
+  reducer: {
+    [petsApi.reducerPath]: petsApi.reducer,
+  },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
+    getDefaultMiddleware().concat(petsApi.middleware),
 });
 
 export default store;
