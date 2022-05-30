@@ -16,6 +16,9 @@ const DetailsLayout = styled.div`
   flex-wrap: wrap;
   height: 40em;
   column-gap: 3em;
+  @media (max-width: 800px) {
+    flex-wrap: nowrap;
+  }
 `;
 
 const DetailsImage = styled.img`
@@ -23,16 +26,29 @@ const DetailsImage = styled.img`
   height: 37em;
   object-fit: cover;
   border-radius: 1em;
+  @media (max-width: 800px) {
+    width: 100%;
+    height: 20em;
+    border-radius: 0;
+    order: 2;
+  }
 `;
 
 const PageTitle = styled.h1`
   width: 50%;
   height: 1em;
+  @media (max-width: 800px) {
+    order: 1;
+  }
 `;
 
 const Details = styled.section`
   width: 50%;
   height: 20em;
+  @media (max-width: 800px) {
+    order: 3;
+    width: 100%;
+  }
 `;
 
 const DetailsList = styled.ul`

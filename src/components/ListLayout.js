@@ -7,13 +7,18 @@ import HomeIcon from "./icons/HomeIcon";
 
 const Layout = styled.div``;
 
-const Heading = styled.h1``;
+const Heading = styled.h1`
+  margin-bottom: 3em;
+`;
 
 const List = styled.ul`
   display: flex;
   margin: 0;
   padding: 0;
   gap: 2em;
+  @media (max-width: 800px) {
+    overflow: scroll;
+  }
 `;
 
 const ListItem = styled.li`
@@ -21,25 +26,22 @@ const ListItem = styled.li`
   flex-direction: column;
   list-style-type: none;
   width: 20%;
+  height: 10em;
   flex: 1;
   gap: 0.5em;
+  @media (max-width: 800px) {
+    height: 5em;
+  }
 `;
 
 const IconBackground = styled.div`
   background-color: #f0f0f0;
   border-radius: 0.7em;
-  height: 4em;
+  height: 6em;
+  @media (max-width: 800px) {
+    height: 3em;
+  }
 `;
-
-const IconImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
-
-IconImage.defaultProps = {
-  src: "/icons/heart.svg",
-};
 
 const ListText = styled.p`
   font-size: 1em;
@@ -49,36 +51,36 @@ const ListText = styled.p`
 
 const ListLayout = () => {
   return (
-    <Layout>
+    <Layout className={`categories`}>
       <Heading>Categories</Heading>
       <List>
         <ListItem>
           <IconBackground>
-            <HeartIcon width={225} height={75} />
+            <HeartIcon />
           </IconBackground>
           <ListText>All pets</ListText>
         </ListItem>
         <ListItem>
           <IconBackground>
-            <PinIcon width={225} height={75} />
+            <PinIcon />
           </IconBackground>
           <ListText>Location specific</ListText>
         </ListItem>
         <ListItem>
           <IconBackground>
-            <ClockIcon width={225} height={75} />
+            <ClockIcon />
           </IconBackground>
           <ListText>Age specific</ListText>
         </ListItem>
         <ListItem>
           <IconBackground>
-            <ConfettieIcon width={225} height={75} />
+            <ConfettieIcon />
           </IconBackground>
           <ListText>Available now</ListText>
         </ListItem>
         <ListItem>
           <IconBackground>
-            <HomeIcon width={225} height={75} />
+            <HomeIcon />
           </IconBackground>
           <ListText>For small or big homes</ListText>
         </ListItem>

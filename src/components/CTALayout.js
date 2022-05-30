@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 const Layout = styled.div`
   display: flex;
+  @media (max-width: 800px) {
+    flex-direction: column-reverse;
+  }
 `;
 
 const Left = styled.div`

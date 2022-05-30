@@ -16,6 +16,10 @@ const StyledSearchBar = styled.input`
   border-radius: 2em;
   border: 1px solid #dddddd;
   padding-left: 4em;
+  @media (max-width: 800px) {
+    background-color: #f0f0f0;
+    border: none;
+  }
 `;
 
 const FilterControls = styled.div`

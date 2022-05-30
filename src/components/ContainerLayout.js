@@ -21,6 +21,9 @@ const Header = styled.header`
   background-color: #f8cf47;
   display: flex;
   justify-content: center;
+  @media (max-width: 800px) {
+    background-color: transparent;
+  }
 `;
 
 const Navigation = styled.nav`

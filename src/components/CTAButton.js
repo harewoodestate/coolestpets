@@ -6,18 +6,30 @@ const Layout = styled.div`
   background-color: #285dab;
   height: 100%;
   padding: 5em 0 0 2em;
-  align-items: start;
+  align-items: flex-start;
   border-radius: 0 2em 2em 0;
+  @media (max-width: 800px) {
+    flex-direction: row;
+    border-radius: 0;
+    height: 2em;
+    padding: 3em 0.5em;
+  }
 `;
 
 const Heading = styled.h1`
   color: #ffffff;
   width: 80%;
+  @media (max-width: 800px) {
+    margin: 0;
+  }
 `;
 
 const CTAText = styled.p`
   color: #ffffff;
   width: 80%;
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;
 
 const CTAStyledButton = styled.button`

@@ -42,3 +42,17 @@
     transform: rotate(360deg);
   }
 }
+
+.categories svg {
+  width: 15em;
+  height: 7em;
+  margin-top: -3em;
+}
+
+@media only screen and (max-width: 600px) {
+  .categories svg {
+    width: 5em;
+    height: 3em;
+    margin-top: -3em;
+  }
+}

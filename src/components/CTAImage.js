@@ -5,6 +5,9 @@ const Image = styled.img`
   height: 100%;
   object-fit: cover;
   border-radius: 2em 0 0 2em;
+  @media (max-width: 800px) {
+    border-radius: 0;
+  }
 `;
 
 Image.defaultProps = {

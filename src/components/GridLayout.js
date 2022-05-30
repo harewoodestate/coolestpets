@@ -12,6 +12,9 @@ const GridList = styled.ul`
   margin: 0;
   padding: 0;
   gap: 2em;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 const ListItem = styled.li`
@@ -24,13 +27,26 @@ const ListItem = styled.li`
   height: 20em;
   flex: 1;
   gap: 0.5em;
+  @media (max-width: 800px) {
+    flex-direction: row;
+    width: 40%;
+    align-items: center;
+  }
 `;
+const Text = styled.p`
+  @media (max-width: 800px) {
+    align-self: center;
+  }
+`;
+
 //TODO: Put text in p tag
 const ListImage = styled.img`
   width: 100%;
   height: 70%;
   border-radius: 1em;
   object-fit: cover;
+  @media (max-width: 800px) {
+  }
 `;
 
 const ListButton = styled.button`
@@ -41,6 +57,11 @@ const ListButton = styled.button`
   width: 7em;
   height: 2.5em;
   border: none;
+  cursor: pointer;
+  @media (max-width: 800px) {
+    width: 2.5em;
+    border-radius: 50%;
+  }
 `;
 
 const GridLayout = ({ query }) => {
@@ -65,8 +86,8 @@ const GridLayout = ({ query }) => {
           data &&
           petResults.slice(0, 3).map((pet) => (
             <ListItem key={pet.id}>
-              <ListImage src={pet.photo} alt="" />
-              {pet.name}
+              <ListImage src={pet.photo} alt={`${pet.name}`} />
+              <Text>{pet.name}</Text>
               <Link to={`/details?id=${pet.id}`}>
                 <ListButton>View</ListButton>
               </Link>
