@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const Layout = styled.div``;
@@ -39,11 +40,21 @@ const ToggleButton = styled.button`
 `;
 
 const SearchFilter = ({ children }) => {
+  const [query, setQuery] = useState("dog");
+
+  const handleOnSearch = (keywords) => {
+    const queryValue = keywords;
+    setQuery(queryValue);
+  };
   return (
     <Layout>
       <Heading>Pets</Heading>
       <StyledForm>
-        <StyledSearchBar type="text" placeholder="Search for pets" />
+        <StyledSearchBar
+          type="text"
+          onChange={(e) => handleOnSearch(e.target.value)}
+          placeholder="Search for pets"
+        />
         <FilterControls>
           <StyledSelect>
             <option value="">Type</option>
@@ -60,7 +71,13 @@ const SearchFilter = ({ children }) => {
           <ToggleButton>Latest added</ToggleButton>
         </FilterControls>
       </StyledForm>
-      {children}
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+          return React.cloneElement(child, { query });
+        } else {
+          return child;
+        }
+      })}
     </Layout>
   );
 };

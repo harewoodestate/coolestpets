@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useGetPetsQuery } from "../services/pets";
+import Fuse from "fuse.js";
 
 const Layout = styled.div``;
 
@@ -42,8 +43,17 @@ const ListButton = styled.button`
   border: none;
 `;
 
-const GridLayout = () => {
+const GridLayout = ({ query }) => {
   const { data, error, isLoading, isSuccess, isError } = useGetPetsQuery();
+  let petResults;
+  if (isSuccess) {
+    const fuse = new Fuse(data.pets, {
+      keys: ["name", "species"],
+    });
+
+    const results = fuse.search(query);
+    petResults = results.map((result) => result.item);
+  }
 
   return (
     <Layout>
@@ -53,7 +63,7 @@ const GridLayout = () => {
       <GridList>
         {isSuccess &&
           data &&
-          data.pets.slice(0, 3).map((pet) => (
+          petResults.slice(0, 3).map((pet) => (
             <ListItem key={pet.id}>
               <ListImage src={pet.photo} alt="" />
               {pet.name}
