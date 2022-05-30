@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -11,7 +12,23 @@ const Container = styled.div`
 const Header = styled.header`
   height: 4em;
   background-color: #f8cf47;
+  display: flex;
+  justify-content: center;
 `;
+
+const Navigation = styled.nav`
+  width: 75vw;
+  align-self: center;
+`;
+
+const Logo = styled.img`
+  width: 3em;
+  height: 3em;
+`;
+
+Logo.defaultProps = {
+  src: "/icons/pet-icon.svg",
+};
 
 const SectionOne = styled.section`
   width: 75vw;
@@ -39,7 +56,13 @@ const ContainerLayout = ({ children }) => {
 
   return (
     <Container>
-      <Header></Header>
+      <Header>
+        <Navigation>
+          <Link to="/">
+            <Logo />
+          </Link>
+        </Navigation>
+      </Header>
       <SectionOne>{one}</SectionOne>
       <SectionTwo>{two}</SectionTwo>
       <SectionThree>{three}</SectionThree>
