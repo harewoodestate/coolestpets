@@ -9,16 +9,18 @@ import CTAButton from "./components/CTAButton";
 
 function App() {
   return (
-    <ContainerLayout>
-      <SearchFilter>
-        <Grid />
-      </SearchFilter>
-      <CTASection>
-        <CTAImage />
-        <CTAButton />
-      </CTASection>
-      <List />
-    </ContainerLayout>
+    <>
+      <ContainerLayout>
+        <SearchFilter>
+          <Grid />
+        </SearchFilter>
+        <CTASection>
+          <CTAImage />
+          <CTAButton />
+        </CTASection>
+        <List />
+      </ContainerLayout>
+    </>
   );
 }
 

@@ -36,15 +36,13 @@ const ContainerLayout = ({ children }) => {
   const [one, two, three] = children;
 
   return (
-    <>
-      <Container>
-        <Header />
-        <SectionOne>{one}</SectionOne>
-        <SectionTwo>{two}</SectionTwo>
-        <SectionThree>{three}</SectionThree>
-        <Footer />
-      </Container>
-    </>
+    <Container>
+      <Header />
+      <SectionOne>{one}</SectionOne>
+      <SectionTwo>{two}</SectionTwo>
+      <SectionThree>{three}</SectionThree>
+      <Footer />
+    </Container>
   );
 };
 

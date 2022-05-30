@@ -56,31 +56,31 @@ const ListLayout = () => {
           <IconBackground>
             <HeartIcon width={225} height={75} />
           </IconBackground>
-          <ListText>Category1</ListText>
+          <ListText>All pets</ListText>
         </ListItem>
         <ListItem>
           <IconBackground>
             <PinIcon width={225} height={75} />
           </IconBackground>
-          <ListText>Category2</ListText>
+          <ListText>Location specific</ListText>
         </ListItem>
         <ListItem>
           <IconBackground>
             <ClockIcon width={225} height={75} />
           </IconBackground>
-          <ListText>Category3</ListText>
+          <ListText>Age specific</ListText>
         </ListItem>
         <ListItem>
           <IconBackground>
             <ConfettieIcon width={225} height={75} />
           </IconBackground>
-          <ListText>Category4</ListText>
+          <ListText>Available now</ListText>
         </ListItem>
         <ListItem>
           <IconBackground>
             <HomeIcon width={225} height={75} />
           </IconBackground>
-          <ListText>Category5</ListText>
+          <ListText>For small or big homes</ListText>
         </ListItem>
       </List>
     </Layout>
