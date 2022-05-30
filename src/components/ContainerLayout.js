@@ -1,6 +1,13 @@
 import styled from "styled-components";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
+const useQuery = () => {
+  const { search } = useLocation();
+
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+};
 
 const Container = styled.div`
   display: flex;
@@ -54,8 +61,10 @@ const ContainerLayout = ({ children }) => {
   let childrenArray = React.Children.toArray(children);
   const [one, two, three] = childrenArray;
 
+  const query = useQuery();
+
   return (
-    <Container>
+    <Container id={query.get("id")}>
       <Header>
         <Navigation>
           <Link to="/">

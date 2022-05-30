@@ -1,5 +1,14 @@
 import ContainerLayout from "../components/ContainerLayout";
 import styled from "styled-components";
+import { useGetPetsQuery } from "../services/pets";
+import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+
+const useQuery = () => {
+  const { search } = useLocation();
+
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+};
 
 const DetailsLayout = styled.div`
   display: flex;
@@ -9,11 +18,10 @@ const DetailsLayout = styled.div`
   column-gap: 3em;
 `;
 
-const DetailsImage = styled.div`
+const DetailsImage = styled.img`
   width: 50%;
   height: 37em;
-  background-image: url("/image1.png");
-  background-repeat: no-repeat;
+  object-fit: cover;
   border-radius: 1em;
 `;
 
@@ -47,32 +55,62 @@ const ListHeading = styled.h2``;
 const Text = styled.p``;
 
 const PetDetails = () => {
+  const query = useQuery();
+  const [yearNow, setYearNow] = useState();
+
+  useEffect(() => {
+    const today = new Date();
+
+    const year = today.getFullYear();
+
+    setYearNow(year);
+  }, []);
+
+  const { data, error, isLoading, isSuccess, isError } = useGetPetsQuery();
+
+  const id = query.get("id");
+
   return (
     <ContainerLayout>
-      <DetailsLayout>
-        <DetailsImage />
-        <PageTitle>Dann</PageTitle>
-        <Details>
-          <DetailsList>
-            <ListItem>
-              <ListHeading>Type</ListHeading>
-              <Text>Dog</Text>
-            </ListItem>
-            <ListItem>
-              <ListHeading>Date added</ListHeading>
-              <Text>19 April 2021</Text>
-            </ListItem>
-            <ListItem>
-              <ListHeading>Category</ListHeading>
-              <Text>Small pet</Text>
-            </ListItem>
-            <ListItem>
-              <ListHeading>Age</ListHeading>
-              <Text>9 months</Text>
-            </ListItem>
-          </DetailsList>
-        </Details>
-      </DetailsLayout>
+      {isLoading && "Loading..."}
+      {isError && error.message}
+      {isSuccess && data && (
+        <DetailsLayout>
+          <DetailsImage
+            src={data.pets.find((x) => x.id === Number(id)).photo}
+          />
+          <PageTitle>
+            {data.pets.find((x) => x.id === Number(id)).name}
+          </PageTitle>
+          <Details>
+            <DetailsList>
+              <ListItem>
+                <ListHeading>Type</ListHeading>
+                <Text>
+                  {data.pets.find((x) => x.id === Number(id)).species}
+                </Text>
+              </ListItem>
+              <ListItem>
+                <ListHeading>Date added</ListHeading>
+                <Text>
+                  {data.pets.find((x) => x.id === Number(id)).dateAdded}
+                </Text>
+              </ListItem>
+              <ListItem>
+                <ListHeading>Category</ListHeading>
+                <Text>Small pet</Text>
+              </ListItem>
+              <ListItem>
+                <ListHeading>Age</ListHeading>
+                <Text>
+                  {yearNow -
+                    data.pets.find((x) => x.id === Number(id)).birthYear}
+                </Text>
+              </ListItem>
+            </DetailsList>
+          </Details>
+        </DetailsLayout>
+      )}
     </ContainerLayout>
   );
 };

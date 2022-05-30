@@ -57,7 +57,7 @@ const GridLayout = () => {
             <ListItem key={pet.id}>
               <ListImage src={pet.photo} alt="" />
               {pet.name}
-              <Link to="/details">
+              <Link to={`/details?id=${pet.id}`}>
                 <ListButton>View</ListButton>
               </Link>
             </ListItem>
