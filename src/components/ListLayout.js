@@ -5,7 +5,9 @@ import ClockIcon from "./icons/ClockIcon";
 import ConfettieIcon from "./icons/ConfettieIcon";
 import HomeIcon from "./icons/HomeIcon";
 
-const Layout = styled.div``;
+const Layout = styled.div`
+  overflow: scroll;
+`;
 
 const Heading = styled.h1`
   margin-bottom: 3em;
@@ -16,8 +18,8 @@ const List = styled.ul`
   margin: 0;
   padding: 0;
   gap: 2em;
-  @media (max-width: 800px) {
-    overflow: scroll;
+  @media (max-width: 1000px) {
+    width: 50em;
   }
 `;
 
@@ -26,11 +28,9 @@ const ListItem = styled.li`
   flex-direction: column;
   list-style-type: none;
   width: 20%;
-  height: 10em;
-  flex: 1;
   gap: 0.5em;
-  @media (max-width: 800px) {
-    height: 5em;
+  @media (max-width: 1000px) {
+    width: 12em;
   }
 `;
 
@@ -55,33 +55,28 @@ const ListLayout = () => {
       <Heading>Categories</Heading>
       <List>
         <ListItem>
-          <IconBackground>
-            <HeartIcon />
-          </IconBackground>
+          <IconBackground />
+          <HeartIcon />
           <ListText>All pets</ListText>
         </ListItem>
         <ListItem>
-          <IconBackground>
-            <PinIcon />
-          </IconBackground>
+          <IconBackground />
+          <PinIcon />
           <ListText>Location specific</ListText>
         </ListItem>
         <ListItem>
-          <IconBackground>
-            <ClockIcon />
-          </IconBackground>
+          <IconBackground />
+          <ClockIcon />
           <ListText>Age specific</ListText>
         </ListItem>
         <ListItem>
-          <IconBackground>
-            <ConfettieIcon />
-          </IconBackground>
+          <IconBackground />
+          <ConfettieIcon />
           <ListText>Available now</ListText>
         </ListItem>
         <ListItem>
-          <IconBackground>
-            <HomeIcon />
-          </IconBackground>
+          <IconBackground />
+          <HomeIcon />
           <ListText>For small or big homes</ListText>
         </ListItem>
       </List>

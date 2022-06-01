@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useGetPetsQuery } from "../services/pets";
-import Fuse from "fuse.js";
 
 const Layout = styled.div``;
 
@@ -14,6 +12,7 @@ const GridList = styled.ul`
   gap: 2em;
   @media (max-width: 800px) {
     flex-direction: column;
+    width: 100%;
   }
 `;
 
@@ -25,27 +24,32 @@ const ListItem = styled.li`
   list-style-type: none;
   width: 30%;
   height: 20em;
-  flex: 1;
   gap: 0.5em;
   @media (max-width: 800px) {
     flex-direction: row;
-    width: 40%;
+    width: 100%;
+    height: 7em;
     align-items: center;
+    justify-content: space-between;
+    overflow: visible;
   }
 `;
 const Text = styled.p`
   @media (max-width: 800px) {
     align-self: center;
+    text-align: center;
+    flex: 1;
   }
 `;
 
-//TODO: Put text in p tag
 const ListImage = styled.img`
   width: 100%;
   height: 70%;
   border-radius: 1em;
   object-fit: cover;
   @media (max-width: 800px) {
+    flex: 2;
+    height: 100%;
   }
 `;
 
@@ -61,38 +65,28 @@ const ListButton = styled.button`
   @media (max-width: 800px) {
     width: 2.5em;
     border-radius: 50%;
+    color: transparent;
+    flex: 2;
+    background-image: url("/icons/arrow-right.svg");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
   }
 `;
 
-const GridLayout = ({ query }) => {
-  const { data, error, isLoading, isSuccess, isError } = useGetPetsQuery();
-  let petResults;
-  if (isSuccess) {
-    const fuse = new Fuse(data.pets, {
-      keys: ["name", "species"],
-    });
-
-    const results = fuse.search(query);
-    petResults = results.map((result) => result.item);
-  }
-
+const GridLayout = ({ filteredResults }) => {
   return (
     <Layout>
       <Heading>Results</Heading>
-      {isLoading && "Loading..."}
-      {isError && error.message}
       <GridList>
-        {isSuccess &&
-          data &&
-          petResults.slice(0, 3).map((pet) => (
-            <ListItem key={pet.id}>
-              <ListImage src={pet.photo} alt={`${pet.name}`} />
-              <Text>{pet.name}</Text>
-              <Link to={`/details?id=${pet.id}`}>
-                <ListButton>View</ListButton>
-              </Link>
-            </ListItem>
-          ))}
+        {filteredResults.slice(0, 3).map((pet) => (
+          <ListItem key={pet.id}>
+            <ListImage src={pet.photo} alt={`${pet.name}`} />
+            <Text>{pet.name}</Text>
+            <Link to={`/details?id=${pet.id}`}>
+              <ListButton aria-label="View">View</ListButton>
+            </Link>
+          </ListItem>
+        ))}
       </GridList>
     </Layout>
   );

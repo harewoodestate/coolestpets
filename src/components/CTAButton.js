@@ -5,14 +5,14 @@ const Layout = styled.div`
   flex-direction: column;
   background-color: #285dab;
   height: 100%;
-  padding: 5em 0 0 2em;
+  padding: 3.5em 0 1.5em 2em;
   align-items: flex-start;
   border-radius: 0 2em 2em 0;
   @media (max-width: 800px) {
     flex-direction: row;
     border-radius: 0;
-    height: 2em;
-    padding: 3em 0.5em;
+    padding: 0 1em;
+    height: 4em;
   }
 `;
 
@@ -20,6 +20,7 @@ const Heading = styled.h1`
   color: #ffffff;
   width: 80%;
   @media (max-width: 800px) {
+    align-self: center;
     margin: 0;
   }
 `;
@@ -40,6 +41,17 @@ const CTAStyledButton = styled.button`
   width: 60%;
   height: 2.5em;
   border: none;
+  cursor: pointer;
+  @media (max-width: 800px) {
+    align-self: center;
+    width: 2.5em;
+    border-radius: 50%;
+    color: transparent;
+    background-color: transparent;
+    background-image: url("/icons/arrow-right.svg");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
 `;
 
 const CTAButton = () => {
@@ -49,7 +61,7 @@ const CTAButton = () => {
       <CTAText>
         See all pets available for adoption, promote them and get them a home.
       </CTAText>
-      <CTAStyledButton>See all</CTAStyledButton>
+      <CTAStyledButton aria-label="See all">See all</CTAStyledButton>
     </Layout>
   );
 };
